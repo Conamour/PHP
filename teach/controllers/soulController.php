@@ -1,29 +1,32 @@
 <?php
 
-class userController extends Controller
+class soulController extends Controller
 {
     public function index()
     {
-        $users=$this->model->load();
-        $this->setResponse($users);
+        $souls = $this->model->load();
+        $this->setResponse($souls);
     }
 
     public function view($data)
     {
-        $user = $this->model->load($data['id']);
-        $this->setResponse($user);
+        $soul = $this->model->load($data['id']);
+        $this->setResponse($soul);
     }
 
     public function add()
     {
         $postData=json_decode(file_get_contents('php://input'), TRUE);
 
-        if(isset($postData['id']) && isset($postData['name']) && isset($postData['score'])){
+        if(isset($postData['id']) && isset($postData['name']) && isset($postData['image'])
+            && isset($postData['power']) && isset($postData['speed'])){
 
             $dataToSave = array(
                 'id' => $postData['id'],
                 'name' => $postData['name'],
-                'score' => $postData['score']);
+                'image' => $postData['image'],
+                'power' => $postData['power'],
+                'speed' => $postData['speed']);
 
             $addedItem=$this->model->create($dataToSave);
             $this->setResponse($addedItem);
@@ -34,12 +37,15 @@ class userController extends Controller
     {
         $postData=json_decode(file_get_contents('php://input'), TRUE);
 
-        if(isset($postData['id']) && isset($postData['name']) && isset($postData['score'])){
+        if(isset($postData['id']) && isset($postData['name']) && isset($postData['image'])
+            && isset($postData['power']) && isset($postData['speed'])){
 
             $dataToSave = array(
                 'id' => $postData['id'],
                 'name' => $postData['name'],
-                'score' => $postData['score']);
+                'image' => $postData['image'],
+                'power' => $postData['power'],
+                'speed' => $postData['speed']);
 
             $updateItem = $this->model->save($data['id'], $dataToSave);
             $this->setResponse($updateItem);

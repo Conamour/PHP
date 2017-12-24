@@ -1,0 +1,10 @@
+[{"id":"0", "name":"Artas", "image":"images/souls/1.png", "power":"10", "speed":"1"},
+{"id":"1", "name":"Sif", "image":"images/souls/2.png", "power":"20", "speed":"2"},
+{"id":"2", "name":"Dragon", "image":"images/souls/3.png", "power":"30", "speed":"3"},
+{"id":"3", "name":"Wheel", "image":"images/souls/4.png", "power":"40", "speed":"4"},
+{"id":"4", "name":"Head", "image":"images/souls/5.png", "power":"50", "speed":"5"},
+{"id":"5", "name":"SacredDragon", "image":"images/souls/6.png", "power":"60", "speed":"6"},
+{"id":"6", "name":"Weyo", "image":"images/souls/7.png", "power":"70", "speed":"7"},
+{"id":"7", "name":"Animusoul", "image":"images/souls/8.png", "power":"80", "speed":"8"},
+{"id":"8", "name":"Ji", "image":"images/souls/9.png", "power":"90", "speed":"9"},
+{"id":"9", "name":"ButterFly", "image":"images/souls/10.png", "power":"100", "speed":"10"}]

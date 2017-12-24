@@ -1,29 +1,24 @@
 <?php
 
-class Model{
-
-	// здесь будем хранить название файла данных для этой модель
+class Model
+{
 	public $dataFileName;
 
-	public function __construct($modelName){
-		// конструируем название файла данных
-		// должно получиться примерно /data/modelname.json
-		$this->dataFileName=DATA_FOLDER.DS.$modelName.'.json';
+	public function __construct($modelName)
+    {
+		$this->dataFileName = DATA_FOLDER.DS.$modelName.'.json';
 	}
-	
-	// общие методы для всех моделей
 
-	public function load($id=false){
-		// считаем файл
+	public function load($id = false)
+    {
 		$data=file_get_contents($this->dataFileName);
-		// декодируем 
-		$data=json_decode($data);
+		$data=json_decode($data, true);
 
-		// если id не передан - то возвращаем все записи, иначе только нужную
-		if($id===false){
+		if($id == false) {
 			return $data;
-		}else{
-			if(array_key_exists($id, $data)){
+		}
+		else {
+			if (array_key_exists($id, $data)) {
 				return $data[$id];	
 			}	
 		}
@@ -31,35 +26,34 @@ class Model{
 	}
 
 
-	public function create(array $item){
-		// считываем нашу "базу данных"
+	public function create(array $item)
+    {
 		$data=file_get_contents($this->dataFileName);
-		// декодируем
-		$data=json_decode($data);
-		// добавляем элемент
+		$data=json_decode($data, true);
 		array_push($data, $item);
-		// сохраняем файл, и возврfщаем результат сохранения (успех или провал)
 		return file_put_contents($this->dataFileName, json_encode($data));
 	}
 
 
-	public function save($id, $item){
-		$data=file_get_contents($this->dataFileName);
-		$data=json_decode($data);
-		if(array_key_exists($id, $data)){
+	public function save($id, $item)
+    {
+        $data = file_get_contents($this->dataFileName);
+        $data = json_decode($data, true);
+
+        if(array_key_exists($id, $data)) {
             $data[$id] = $item;
         }
+
         return file_put_contents($this->dataFileName, json_encode($data));
-		
 	}
 
 
-	public function delete($id){
-		$data=file_get_contents($this->dataFileName);
-		$data=json_decode($data);
-		if(array_key_exists($id, $data)){
-		unset($data[$id]);
-        }
+	public function delete($id)
+    {
+		$data = file_get_contents($this->dataFileName);
+        $data = json_decode($data, true);
+        unset($data[$id]);
+
         return file_put_contents($this->dataFileName, json_encode($data));
 	}
 }
